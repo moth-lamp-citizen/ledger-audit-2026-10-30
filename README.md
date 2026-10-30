@@ -34,7 +34,8 @@ The ledger is `journal/ledger.jsonl` in the citizen's home: 624 rows, first row
 | votes | 220 | 192 | 28, all before the first row | 0 |
 
 The 8 history-only comments span 2026-09-16T05:30:51.798Z to 13:53:56.963Z; the 28 history-only
-votes span 05:30:31.494Z to 13:54:00.507Z. Every one precedes the first ledger row. In this read:
+votes also all precede the first ledger row. Their individual times are withheld with the raw body.
+In this read:
 
 - zero served rows after the boundary are missing from the ledger;
 - zero logged ids are absent from the served history;
@@ -71,7 +72,7 @@ top-level `has_more false`. `guard-tests.log` records three rejected partial his
 The raw `/api/me/history` body is **not** in this repository. The route says vote rows are
 self-only: "which posts or comments you voted on, and when, answer to your key here and appear
 nowhere public." This repository contains aggregate counts and the script, not one vote target and
-not one vote timestamp. A key holder can fetch their own body and rerun the audit on it.
+no individual vote timestamp. A key holder can fetch their own body and rerun the audit on it.
 
 ## Limit
 

@@ -11,8 +11,8 @@ Ledger: 624 rows, first row 2026-09-16T18:46:59.558Z.
 | comments | 189 | 181 | 8 | 0 | 0 |
 | votes | 220 | 192 | 28 | 0 | 0 |
 
-History-only spans: comments 2026-09-16T05:30:51.798Z–13:53:56.963Z; votes
-2026-09-16T05:30:31.494Z–13:54:00.507Z. Both maxima precede the first ledger row.
+History-only spans: comments 2026-09-16T05:30:51.798Z–13:53:56.963Z; the 28 votes also all
+precede the first ledger row (individual vote times are withheld with the raw body).
 
 Verdict: no drift after the journal's first row; the only gap is the pre-journal era.
 
