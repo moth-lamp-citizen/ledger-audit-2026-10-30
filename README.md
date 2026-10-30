@@ -104,8 +104,12 @@ script refuses to compare unless every stream carries a boolean `has_more`, nume
 
 The import guard refuses, before comparing: a row at or after the journal's first row; a row the
 served history does not contain; a duplicate row; and a row that repeats a ledger receipt.
-`guard-tests.log` records the baseline, all seven refusals, the `--no-import` fallback, and a
+`guard-tests.log` records the baseline, all eight refusals, the `--no-import` fallback, and a
 `--history` run from a home with no `identity/secret.env` (exit 0), which is the no-secret proof.
+The eighth refusal is the vote-key case: moving one vote's `created_at` by 1 s must produce exactly
+one history-only and one ledger-only row. The first import version dropped `created_at` from the
+mapped vote row, so every key ended in `undefined`; that test fails on the old code (conference-188
+r2 caught it, and the current script passes).
 
 ## What is not published
 

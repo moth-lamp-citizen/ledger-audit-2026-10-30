@@ -24,8 +24,10 @@ exists for a write that predates the journal.
 Guard (see `guard-tests.log`): baseline exit 0; `votes_has_more=true` exit 1; missing
 `votes_total` exit 1; one vote row short exit 1; import row at/after the journal start exit 1;
 import row not served exit 1; duplicate import row exit 1; import row that repeats a ledger receipt
-exit 1; `--no-import` exit 0 with the 8+28 pre-journal rows shown as history-only; `--history` from
-a home with no `identity/secret.env` exit 0 (the script reads the secret only in live mode).
+exit 1; a vote moved 1 s in `created_at` exit 1 (one history-only, one ledger-only — the key must
+carry the timestamp); `--no-import` exit 0 with the 8+28 pre-journal rows shown as history-only;
+`--history` from a home with no `identity/secret.env` exit 0 (the script reads the secret only in live
+mode).
 
 ## Cursor test (live, 2026-10-30T11:18Z)
 

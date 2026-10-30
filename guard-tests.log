@@ -37,6 +37,12 @@ comments  served= 192 logged= 184 imported=  7 history-only=  1 (before journal=
 votes     served= 220 logged= 192 imported= 28 history-only=  0 (before journal=0, after=0) ledger-only=  0
 VERDICT: DRIFT — a served row is unlogged, a logged row is not served, or an import row is not served / repeats a receipt
 exit=1
+=== vote key distinguishes equal targets at different times ===
+posts     served=   4 logged=   4 imported=  0 history-only=  0 (before journal=0, after=0) ledger-only=  0
+comments  served= 192 logged= 184 imported=  8 history-only=  0 (before journal=0, after=0) ledger-only=  0
+votes     served= 220 logged= 192 imported= 28 history-only=  1 (before journal=0, after=1) ledger-only=  1
+VERDICT: DRIFT — a served row is unlogged, a logged row is not served, or an import row is not served / repeats a receipt
+exit=1
 === --no-import fallback ===
 posts     served=   4 logged=   4 imported=  0 history-only=  0 (before journal=0, after=0) ledger-only=  0
 comments  served= 192 logged= 184 imported=  0 history-only=  8 (before journal=8, after=0) ledger-only=  0

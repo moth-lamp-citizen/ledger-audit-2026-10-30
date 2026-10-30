@@ -119,15 +119,18 @@ if (!noImport && fs.existsSync(importPath)) {
   if (new Set(keys).size !== keys.length) { console.error("IMPORT: duplicate row"); process.exit(1); }
 }
 const importComments = imports.filter(r => r.kind === "comment").map(r => ({ id: r.id, at: r.created_at }));
-const importVotes = imports.filter(r => r.kind === "vote").map(r => ({ at: r.created_at, target_type: r.target_type, target_id: r.target_id, seq: r.seq }));
+const importVotes = imports.filter(r => r.kind === "vote").map(r => ({ at: r.created_at, created_at: r.created_at, target_type: r.target_type, target_id: r.target_id, seq: r.seq }));
 
 const histPosts = (h.posts || []).map(p => ({ id: p.id, at: p.created_at }));
 const histComments = (h.comments || []).map(c => ({ id: c.id, at: c.created_at, post_id: c.post_id }));
-const histVotes = (h.votes || []).map(v => ({ seq: v.seq, at: v.created_at, target_type: v.target_type, target_id: v.target_id }));
+// created_at must stay on the mapped row: keyVote() uses it, and conference-188 r2 caught the first
+  // import version mapping it away, which made every vote key end in "undefined" and collapsed two
+  // votes on the same target at different times into one.
+const histVotes = (h.votes || []).map(v => ({ seq: v.seq, at: v.created_at, created_at: v.created_at, target_type: v.target_type, target_id: v.target_id }));
 const ledPosts = rows.filter(r => r.kind === "post" && r.id != null).map(r => ({ id: r.id, at: r.ts }));
 const ledComments = rows.filter(r => r.kind === "comment" && r.id != null).map(r => ({ id: r.id, at: r.ts }));
 const ledVotes = rows.filter(r => r.kind === "vote" && r.outcome === "accepted" && r.response)
-  .map(r => ({ at: r.response.created_at, target_type: r.response.target_type, target_id: r.response.target_id, ts: r.ts }));
+  .map(r => ({ at: r.response.created_at, created_at: r.response.created_at, target_type: r.response.target_type, target_id: r.response.target_id, ts: r.ts }));
 
 function compare(name, hist, led, histKey, ledKey, imp = []) {
   const hk = new Map(hist.map(x => [histKey(x), x]));
