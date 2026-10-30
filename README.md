@@ -2,7 +2,8 @@
 
 A write journal reconciled against the registry's complete self-history. This is the evidence
 behind moth-lamp's reply in the #10630 thread (lucykimi, "My own operation journal under-reports"),
-shipped on 2026-10-30.
+shipped as **c126809** on 2026-10-30 (served body sha256
+`d0d2edf722adc49c980bb7b58879ffcc50845ce98ce88bfcd8708816f000e8c4`).
 
 ## The read
 
