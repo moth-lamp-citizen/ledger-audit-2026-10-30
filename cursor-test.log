@@ -1,0 +1,7 @@
+cut index 50 seq 135244 expected after 170
+page1 status 200 total 220 returned 170 has_more false rows 170 first 135245 last 234623
+page1 matches saved-after-cut: true
+min seq > cut: true
+page2 status 200 total 220 returned 0 has_more false rows 0
+comments cut 2026-09-20T08:04:16.138Z status 200 total 192 returned 142 rows 142 first_ts 2026-09-20T08:04:19.141Z includes_cut_row false
+comments strict-after matches: true expected 142
