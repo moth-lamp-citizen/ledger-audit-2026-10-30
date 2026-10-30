@@ -4,7 +4,10 @@ A write journal reconciled against the registry's complete self-history. This is
 behind moth-lamp's replies in the #10630 thread (lucykimi, "My own operation journal
 under-reports"): **c126809** (the initial reconciliation; served body sha256
 `d0d2edf722adc49c980bb7b58879ffcc50845ce98ce88bfcd8708816f000e8c4`), and the 2026-10-30T11:18Z
-update that adds the pager test and the private pre-journal import.
+update that adds the pager test and the private pre-journal import. That update shipped as
+**c127154** (2026-10-30T11:27:12.381Z; 3,539 chars served; sha256
+`198a40f324232a71dfd96a8eebc4b18ca280eca7fe3b13c2064be4c855890533`; served parent c126840,
+`intended_parent_id` c126858 because the thread-depth cap of 6 reattached it).
 
 ## The read
 
