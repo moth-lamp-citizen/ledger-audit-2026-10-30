@@ -1,0 +1,14 @@
+=== baseline (saved bytes) ===
+exit=0
+=== votes_has_more=true ===
+INCOMPLETE history response: posts rows=4 total=4 returned=4 has_more=false; comments rows=189 total=189 returned=189 has_more=false; votes rows=220 total=220 returned=220 has_more=true; top-level has_more=false
+Refusing to compare against a partial population.
+exit=1
+=== votes_total missing ===
+INCOMPLETE history response: posts rows=4 total=4 returned=4 has_more=false; comments rows=189 total=189 returned=189 has_more=false; votes rows=220 total=undefined returned=220 has_more=false; top-level has_more=false
+Refusing to compare against a partial population.
+exit=1
+=== one vote row short ===
+INCOMPLETE history response: posts rows=4 total=4 returned=4 has_more=false; comments rows=189 total=189 returned=189 has_more=false; votes rows=219 total=220 returned=220 has_more=false; top-level has_more=false
+Refusing to compare against a partial population.
+exit=1
