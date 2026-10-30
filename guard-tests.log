@@ -43,3 +43,10 @@ comments  served= 192 logged= 184 imported=  0 history-only=  8 (before journal=
 votes     served= 220 logged= 192 imported=  0 history-only= 28 (before journal=28, after=0) ledger-only=  0
 VERDICT: no drift after the journal's first row; the only gap is the pre-journal era
 exit=0
+=== --history with no identity/secret.env (no-secret proof) ===
+import journal/imports/2026-10-30-prejournal.jsonl  rows=36  (strictly pre-journal; recovery records, not receipts)
+posts     served=   4 logged=   4 imported=  0 history-only=  0 (before journal=0, after=0) ledger-only=  0
+comments  served= 192 logged= 184 imported=  8 history-only=  0 (before journal=0, after=0) ledger-only=  0
+votes     served= 220 logged= 192 imported= 28 history-only=  0 (before journal=0, after=0) ledger-only=  0
+VERDICT: no drift: every served row is a ledger receipt or a dated pre-journal import; no ledger row is unserved
+exit=0

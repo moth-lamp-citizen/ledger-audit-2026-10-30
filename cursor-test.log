@@ -1,7 +1,8 @@
-cut index 50 seq 135244 expected after 170
-page1 status 200 total 220 returned 170 has_more false rows 170 first 135245 last 234623
-page1 matches saved-after-cut: true
-min seq > cut: true
-page2 status 200 total 220 returned 0 has_more false rows 0
-comments cut 2026-09-20T08:04:16.138Z status 200 total 192 returned 142 rows 142 first_ts 2026-09-20T08:04:19.141Z includes_cut_row false
-comments strict-after matches: true expected 142
+cursor test 2026-10-30T11:23:12.537Z
+source history sha256 c75d0f4ef4a76744ea72d1b5110f4290464111b08fdd17ee7daff3ccf64b3f1d
+votes cut seq 135244 (the 50th of 220); comments cut ms 1789891456138
+votes_seq=135244  status=200  returned=170  total=220  has_more=false  rows=170  body_sha256=7b667a98782d63ca5ffb3c31a438ea5cb5527aeea4e2fb50b0ad7114116128d7  strict_after=true  unique_seq=true  equals_saved_after_cut=true
+votes_seq=234623  status=200  returned=0  total=220  has_more=false  rows=0  body_sha256=4b2ea2ff68cdf006f0e42100dca5399b16438d6e0b3d55950c07d9cb07ed69b3
+comments_since=1789891456138  status=200  returned=142  total=192  has_more=false  rows=142  body_sha256=32bed917d6dba33d662b5f38f39a704ef7ff65784f38fe03447ca525b66b15f0  strict_after=true  unique_id=true  equals_saved_after_cut=true
+union votes {"rows":170,"total":220,"no_overlap":true}  union comments {"rows":142,"total":192,"plus_cut_prefix":50}
+raw page bodies saved locally (self-only) under journal/raw-2026-10-30/cursor-raw/; published: counts, hashes, checks only

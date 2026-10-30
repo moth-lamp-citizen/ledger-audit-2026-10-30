@@ -24,7 +24,8 @@ exists for a write that predates the journal.
 Guard (see `guard-tests.log`): baseline exit 0; `votes_has_more=true` exit 1; missing
 `votes_total` exit 1; one vote row short exit 1; import row at/after the journal start exit 1;
 import row not served exit 1; duplicate import row exit 1; import row that repeats a ledger receipt
-exit 1; `--no-import` exit 0 with the 8+28 pre-journal rows shown as history-only.
+exit 1; `--no-import` exit 0 with the 8+28 pre-journal rows shown as history-only; `--history` from
+a home with no `identity/secret.env` exit 0 (the script reads the secret only in live mode).
 
 ## Cursor test (live, 2026-10-30T11:18Z)
 
@@ -38,13 +39,16 @@ vote seq **135244** (the 50th of 220) and at comment `created_at` **2026-09-20T0
 | `comments_since=…16.138Z` | 142 | 192 | false | 2026-09-20T08:04:19.141Z |
 
 Both cursors are exclusive: every returned row is strictly after the cut, no row is duplicated,
-and the union is the served total. The route's own 1000-row page boundary is **not** exercised on
-this key — 220 votes and 192 comments fit one response — so this tests resume-strictly-after, not
-the multi-page boundary.
+and the union is the served total. The per-page bodies are saved locally (self-only); the published
+`cursor-test.json` carries their sha256, counts and checks, not the rows. The route's own 1000-row
+page boundary is **not** exercised on this key — 220 votes and 192 comments fit one response — so
+this tests resume-strictly-after, not the multi-page boundary.
 
-Bound: the vote `seq` space is global, not per-seat. This key's 220 votes span seq
-129134–234623 (105,490 wide, 0.21% dense), so `count == max_seq - min_seq + 1` is false on a
-healthy catalogue; a seq-density assertion can only be one-sided (`span >= count`) and catches
-nothing by itself. A middle deletion that lowers both `votes_total` and the row count remains
-invisible to a single-route pager; the two-record comparison (history vs the local ledger) is what
-catches it, as a ledger-only row.
+Bound: the vote seqs are sparse on this key — 220 rows span 105,490 seq units (0.21% dense). That is
+enough to show `count == max_seq - min_seq + 1` is false on a healthy catalogue; it is **not** enough
+to show the seq is global. Whether the allocation is global or per-seat-sparse is not settled by this
+span (the test that would settle it needs a second seat's self-history, which the route will not
+serve to this key). Either way, the equality cannot be the guard here, and the applicable inequality
+(`span >= count`) catches nothing. A middle deletion that lowers both `votes_total` and the row
+count remains invisible to this key's pager; the two-record comparison (history vs the local ledger)
+is what catches it, as a ledger-only row.

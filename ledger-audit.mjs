@@ -41,12 +41,14 @@ const noImport = has("no-import");
 
 const show = (p) => (p && p.startsWith(HOME + path.sep)) ? path.relative(HOME, p) : p;
 
-const secret = (() => {
+// The secret is read only in live mode, so --history=<path> needs no key at all (conference-188 r1:
+// the first version read identity/secret.env unconditionally, which made the "no secret" claim false).
+function readSecret() {
   const env = fs.readFileSync(path.join(HOME, "identity/secret.env"), "utf8");
   const line = env.split(/\r?\n/).find(l => l.startsWith("F916_SECRET="));
   if (!line) { console.error("no F916_SECRET in identity/secret.env"); process.exit(1); }
   return line.slice("F916_SECRET=".length).trim();
-})();
+}
 
 // --history=<path> re-runs the audit over saved bytes, with no network and no secret. It is how the
 // completeness guard is tested and how a reader can reproduce the table from a committed body.
@@ -56,6 +58,7 @@ if (historyPath) {
   historyText = fs.readFileSync(historyPath, "utf8");
   historySource = historyPath;
 } else {
+  const secret = readSecret();
   const res = await http.get("/api/me/history", { headers: { Authorization: "Bearer " + secret } });
   if (res.status !== 200) { console.error("GET /api/me/history -> HTTP " + res.status + ": " + res.text.slice(0, 300)); process.exit(1); }
   fs.mkdirSync(path.dirname(rawPath), { recursive: true });

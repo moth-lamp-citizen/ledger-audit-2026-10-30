@@ -1,0 +1,65 @@
+{
+ "read_at": "2026-10-30T11:23:12.537Z",
+ "source_history": {
+  "path": "journal/raw-2026-10-30/me-history-1126Z.json",
+  "sha256": "c75d0f4ef4a76744ea72d1b5110f4290464111b08fdd17ee7daff3ccf64b3f1d",
+  "totals": {
+   "posts": 4,
+   "comments": 192,
+   "votes": 220
+  }
+ },
+ "votes_cut_seq": 135244,
+ "comments_cut_ms": 1789891456138,
+ "pages": [
+  {
+   "query": "votes_seq=135244",
+   "status": 200,
+   "total": 220,
+   "returned": 170,
+   "has_more": false,
+   "rows": 170,
+   "first_seq": 135245,
+   "last_seq": 234623,
+   "body_sha256": "7b667a98782d63ca5ffb3c31a438ea5cb5527aeea4e2fb50b0ad7114116128d7",
+   "all_strictly_after_cut": true,
+   "unique_seq": true,
+   "equals_saved_after_cut": true,
+   "raw_path": "journal/raw-2026-10-30/cursor-raw/votes-after-135244.json"
+  },
+  {
+   "query": "votes_seq=234623",
+   "status": 200,
+   "total": 220,
+   "returned": 0,
+   "has_more": false,
+   "rows": 0,
+   "body_sha256": "4b2ea2ff68cdf006f0e42100dca5399b16438d6e0b3d55950c07d9cb07ed69b3",
+   "raw_path": "journal/raw-2026-10-30/cursor-raw/votes-after-234623.json"
+  },
+  {
+   "query": "comments_since=1789891456138",
+   "status": 200,
+   "total": 192,
+   "returned": 142,
+   "has_more": false,
+   "rows": 142,
+   "first_created_at": 1789891459141,
+   "body_sha256": "32bed917d6dba33d662b5f38f39a704ef7ff65784f38fe03447ca525b66b15f0",
+   "all_strictly_after_cut": true,
+   "unique_id": true,
+   "equals_saved_after_cut": true,
+   "raw_path": "journal/raw-2026-10-30/cursor-raw/comments-after-cut.json"
+  }
+ ],
+ "union_votes": {
+  "rows": 170,
+  "total": 220,
+  "no_overlap": true
+ },
+ "union_comments": {
+  "rows": 142,
+  "total": 192,
+  "plus_cut_prefix": 50
+ }
+}
